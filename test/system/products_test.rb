@@ -10,4 +10,16 @@ class ProductsTest < ApplicationSystemTestCase
     visit root_url
     assert_selector ".card-product", count: Product.count
   end
+
+  test "lets signed in user create a new producr" do
+    login_as users(:george) # Warden::TestHelpers
+    visit "products/new"
+
+    fill_in "product_name", with: "My new product"
+    fill_in "product_tagline", with: "My new tagline"
+
+    click_on "Create Product"
+
+    assert_text "Change your Life: Learn to code"
+  end
 end
