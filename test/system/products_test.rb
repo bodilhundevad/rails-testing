@@ -11,8 +11,8 @@ class ProductsTest < ApplicationSystemTestCase
     assert_selector ".card-product", count: Product.count
   end
 
-  test "lets signed in user create a new producr" do
-    login_as users(:george) # Warden::TestHelpers
+  test "lets signed in user create a new product" do
+    login_as users(:george) # Warden::TestHelpers from test_helper.rb
     visit "products/new"
 
     fill_in "product_name", with: "My new product"
